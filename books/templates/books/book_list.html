@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            background: url("https://img.freepik.com/free-photo/top-view-books-with-copy-space_23-2148827187.jpg") no-repeat center center fixed;
+            background-size: cover; /* Make the background cover the entire screen */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin: 0;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        a {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            transition: background-color 0.3s;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        li {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-size: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        li:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .book-title {
+            font-weight: bold;
+            color: #000000;
+            
+        }
+
+        .book-author {
+            font-style: italic;
+            color: #666;
+        }
+
+        .delete-button {
+            background-color: #FF4D4F;
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background-color 0.3s;
+            margin-left: 10px;
+        }
+
+        .delete-button:hover {
+            background-color: #d9363e;
+        }
+    </style>
+</head>
+<body>
+    <h1>Document Log</h1>
+    <a href="{% url 'book_add' %}">Add a New Document</a>
+    <ul>
+        {% for book in books %}
+            <li>
+                <a href="{% url 'book_detail' book.pk %}" class="book-title">{{ book.title }}</a>
+                <span class="book-author">by {{ book.author }}</span>
+                <a href="{% url 'book_delete' book.pk %}" class="delete-button">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

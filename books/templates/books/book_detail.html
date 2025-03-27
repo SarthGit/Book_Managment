@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin: 0;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .book-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 20px;
+        }
+
+        .book-container h2 {
+            color: #007BFF;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .book-detail {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .book-detail span {
+            font-weight: bold;
+        }
+
+        .book-description {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.6;
+            margin-top: 10px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #218838;
+        }
+
+        .back-button {
+            background-color: #007BFF;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+
+        .download-button {
+            background-color: #ffc107;
+        }
+
+        .download-button:hover {
+            background-color: #e0a800;
+        }
+    </style>
+</head>
+<body>
+    <h1>Document Details</h1>
+    <div class="book-container">
+        <h2>{{ book.title }}</h2>
+        <p class="book-detail"><span>Author/Source:</span> {{ book.author }}</p>
+        <p class="book-detail"><span>published_date:</span> {{ book.published_date }}</p>
+        {% if book.description %}
+            <p class="book-detail"><span><b>Description:</b></span> {{ book.description }}</p>
+        {% else %}
+            <p class="book-detail"><span><b>Description:</b></span> No description available.</p>
+        {% endif %}
+
+        {% if book.file %}
+            <!-- Download link for the uploaded file -->
+            <a href="{{ book.file.url }}" class="button download-button" download>Download File</a>
+        {% else %}
+            <p class="book-detail"><span><b>File:</b></span> No file available for download.</p>
+        {% endif %}
+
+        <a href="{% url 'book_list' %}" class="button back-button">Back to Book List</a>
+    </div>
+</body>
+</html>
